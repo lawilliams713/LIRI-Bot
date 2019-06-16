@@ -4,10 +4,10 @@ var axios = require("axios")
 // var Spotify = require("node-spotify-api")
 // var spotify = new Spotify(keys.spotify);
 
-// concert-this
+concert-this
 
 
-// spotify-this-song
+spotify-this-song
 
 
 // movie-this
@@ -41,14 +41,21 @@ switch (operation) {
     default:
     console.log("LIRI doesn't know that");
     }
-    function getMyBands(){}
+    function getMyBands(){
+        var urlBands = "https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp";
+        axios.get(urlBands).then(function(response){
+            console.log(response.data)
+        })
+    }
+
     function getMeSpotify(){}
+    
     function getMeMovie(){
-        var urlmovie =
-"http://www.omdbapi.com/?t=" + keyQuery + "&y=&plot=full&tomatoes=true&apikey=trilogy";
+        var urlmovie ="http://www.omdbapi.com/?t=" + keyQuery + "&y=&plot=full&tomatoes=true&apikey=trilogy";
         axios.get(urlmovie).then(function(response){
             console.log(response.data)
         })
 
     }
+
     function doWhatItSays(){}
