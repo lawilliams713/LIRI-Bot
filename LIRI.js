@@ -1,8 +1,8 @@
 require("dotenv").config();
 var axios = require("axios")
-// var keys = require("./keys.js");
-// var Spotify = require("node-spotify-api")
-// var spotify = new Spotify(keys.spotify);
+var keys = require("./keys.js");
+var Spotify = require("node-spotify-api")
+var spotify = new Spotify(keys.spotify);
 
 concert-this
 
@@ -14,6 +14,7 @@ spotify-this-song
 
 
 // do-what-it-says
+
 var input = process.argv
 console.log(input)
 var operation = input[2]
