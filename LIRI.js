@@ -7,12 +7,12 @@ var Spotify = require("node-spotify-api")
 
 var input = process.argv
 console.log(input)
-var operation = input[ 2 ]
+var operation = input[2]
 var keyQuery = ""
 
 for (i = 3; i < input.length; i++) {
 
-    keyQuery = keyQuery.concat(input[ i ] + " ");
+    keyQuery = keyQuery.concat(input[i] + " ");
 }
 keyQuery = keyQuery.trim();
 console.log(operation, keyQuery)
@@ -37,7 +37,7 @@ switch (operation) {
         console.log("LIRI doesn't know that");
 }
 
-function getMyBands () {
+function getMyBands() {
     var artist = keyQuery;
     var urlBands = "https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp";
     axios.get(urlBands).then(function (response) {
@@ -46,9 +46,9 @@ function getMyBands () {
         console.log("number: ", api.length)
 
         for (var i = 0; i < api.length; i++) {
-            var name = api[ i ].venue.name
-            var country = api[ i ].venue.country
-            var date = moment(api[ i ].datetime).format("MM/DD/YYYY")
+            var name = api[i].venue.name
+            var country = api[i].venue.country
+            var date = moment(api[i].datetime).format("MM/DD/YYYY")
             console.log("-----------");
             console.log("Venue Name: " + name);
             console.log("Country: " + country);
@@ -60,7 +60,7 @@ function getMyBands () {
     })
 }
 
-function getMeSpotify () {
+function getMeSpotify() {
     // var Spotify = require('node-spotify-api');
 
     // var spotify = new Spotify({
@@ -76,20 +76,20 @@ function getMeSpotify () {
         //console.log(response.tracks.items)
         var api = data.tracks.items;
         // console.log(api[0])
-     
+
         for (var i = 0; i < api.length; i++) {
             var artists = []
-            for(var j = 0; j < api[i].artists.length; j++){
+            for (var j = 0; j < api[i].artists.length; j++) {
                 artists.push(api[i].artists[j].name)
             }
-    
+
             console.log("----------------" + i + "-------------------");
             console.log("Artist(s): " + artists.join(", "));
             console.log("Song Name: " + api[i].name);
             console.log("Preview Song: " + api[i].preview_url);
             console.log("Album: " + api[i].album.name);
             console.log("-------------------------------------------");
-          }
+        }
         // console.log(data.tracks.items[0])
         // Artist(s)
         // The song's name
@@ -98,7 +98,7 @@ function getMeSpotify () {
     });
 }
 
-function getMeMovie () {
+function getMeMovie() {
     var urlmovie = "http://www.omdbapi.com/?t=" + keyQuery + "&y=&plot=full&tomatoes=true&apikey=trilogy";
     axios.get(urlmovie).then(function (response) {
         // console.log(response.data)
@@ -108,7 +108,7 @@ function getMeMovie () {
         var title = api.Title
         var year = api.Year
         var imdbRating = api.imdbRating
-        var rotrating = api.Ratings[ 1 ].Value
+        var rotrating = api.Ratings[1].Value
         var country = api.Country
         var language = api.Language
         var plot = api.Plot
@@ -137,4 +137,10 @@ function getMeMovie () {
 
 }
 
-function doWhatItSays () { }
+function doWhatItSays() {
+    // Reads the random text file and passes it to the spotify function
+    fs.readFile("random.txt", "utf8", function(error, data) {
+        getMeSpotify(data);
+    });
+}
+
