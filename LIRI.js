@@ -41,7 +41,7 @@ function getMyBands () {
     var artist = keyQuery;
     var urlBands = "https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp";
     axios.get(urlBands).then(function (response) {
-        console.log(response.data)
+        // console.log(response.data)
         var api = response.data;
         console.log("number: ", api.length)
 
@@ -49,7 +49,11 @@ function getMyBands () {
             var name = api[ i ].venue.name
             var country = api[ i ].venue.country
             var date = moment(api[ i ].datetime).format("MM/DD/YYYY")
-            console.log(name, country, date)
+            console.log("-----------");
+            console.log("Venue Name: " + name);
+            console.log("Country: " + country);
+            console.log("Concert Date: " + date);
+            console.log("-----------");
 
 
         }
@@ -71,7 +75,7 @@ function getMeSpotify () {
         }
         //console.log(response.tracks.items)
         var api = data.tracks.items;
-        console.log(api[0])
+        // console.log(api[0])
      
         for (var i = 0; i < api.length; i++) {
             var artists = []
@@ -80,10 +84,10 @@ function getMeSpotify () {
             }
     
             console.log("----------------" + i + "-------------------");
-            console.log("artist(s): " + artists.join(", "));
-            console.log("song name: " + api[i].name);
-            console.log("preview song: " + api[i].preview_url);
-            console.log("album: " + api[i].album.name);
+            console.log("Artist(s): " + artists.join(", "));
+            console.log("Song Name: " + api[i].name);
+            console.log("Preview Song: " + api[i].preview_url);
+            console.log("Album: " + api[i].album.name);
             console.log("-------------------------------------------");
           }
         // console.log(data.tracks.items[0])
@@ -97,7 +101,7 @@ function getMeSpotify () {
 function getMeMovie () {
     var urlmovie = "http://www.omdbapi.com/?t=" + keyQuery + "&y=&plot=full&tomatoes=true&apikey=trilogy";
     axios.get(urlmovie).then(function (response) {
-        console.log(response.data)
+        // console.log(response.data)
         var api = response.data;
 
 
@@ -109,7 +113,17 @@ function getMeMovie () {
         var language = api.Language
         var plot = api.Plot
         var actors = api.Actors
-        console.log(title, year, imdbRating, rotrating, country, language, plot, actors)
+        console.log("-----------");
+        console.log("Title: " + title);
+        console.log("Year: " + year);
+        console.log("imdbRating: " + imdbRating);
+        console.log("Rotten Tomatoes Rating: " + rotrating);
+        console.log("Country: " + country);
+        console.log("Language: " + language);
+        console.log("Plot: " + plot);
+        console.log("Actors: " + actors);
+        console.log("-----------");
+
 
         //   * Title of the movie.
         //   * Year the movie came out.
