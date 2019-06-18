@@ -5,25 +5,14 @@ var keys = require("./keys.js");
 var Spotify = require("node-spotify-api")
 
 
-// concert-this
-
-
-
-
-
-// movie-this
-
-
-// do-what-it-says
-
 var input = process.argv
 console.log(input)
-var operation = input[2]
+var operation = input[ 2 ]
 var keyQuery = ""
 
 for (i = 3; i < input.length; i++) {
 
-keyQuery = keyQuery.concat(input[i] + " ");
+    keyQuery = keyQuery.concat(input[ i ] + " ");
 }
 keyQuery = keyQuery.trim();
 console.log(operation, keyQuery)
@@ -31,90 +20,107 @@ console.log(operation, keyQuery)
 switch (operation) {
     case "concert-this":
         console.log("concert");
-    getMyBands(keyQuery);
-    break;
+        getMyBands(keyQuery);
+        break;
     case "spotify-this-song":
         console.log("spotify");
-    getMeSpotify(keyQuery);
-    break;
+        getMeSpotify(keyQuery);
+        break;
     case "movie-this":
         console.log("movie");
-    getMeMovie(keyQuery);
-    break;
+        getMeMovie(keyQuery);
+        break;
     case "do-what-it-says":
-    doWhatItSays();
-    break;
+        doWhatItSays();
+        break;
     default:
-    console.log("LIRI doesn't know that");
-    }
+        console.log("LIRI doesn't know that");
+}
 
-    function getMyBands(){
-        var artist = keyQuery;
-        var urlBands = "https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp";
-        axios.get(urlBands).then(function(response){
-            console.log(response.data)
-            var api = response.data;
-            console.log("number: ", api.length)
+function getMyBands () {
+    var artist = keyQuery;
+    var urlBands = "https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp";
+    axios.get(urlBands).then(function (response) {
+        console.log(response.data)
+        var api = response.data;
+        console.log("number: ", api.length)
 
-            for(var i=0; i<api.length;i++){
-                var name = api[i].venue.name
-                var country = api[i].venue.country
-                var date = moment(api[i].datetime).format("MM/DD/YYYY")
-                console.log(name,country,date)
+        for (var i = 0; i < api.length; i++) {
+            var name = api[ i ].venue.name
+            var country = api[ i ].venue.country
+            var date = moment(api[ i ].datetime).format("MM/DD/YYYY")
+            console.log(name, country, date)
 
 
-            }
-        })
-    }
+        }
+    })
+}
 
-    function getMeSpotify(){
-        var Spotify = require('node-spotify-api');
- 
-        // var spotify = new Spotify({
-        //   id: <your spotify client id>,
-        //   secret: <your spotify client secret>
-        // });
-        var spotify = new Spotify(keys.spotify);
-         
-        spotify.search({ type: 'track', query: keyQuery }, function(err, data) {
-          if (err) {
+function getMeSpotify () {
+    // var Spotify = require('node-spotify-api');
+
+    // var spotify = new Spotify({
+    //   id: <your spotify client id>,
+    //   secret: <your spotify client secret>
+    // });
+    var spotify = new Spotify(keys.spotify);
+
+    spotify.search({ type: 'track', query: keyQuery }, function (err, data) {
+        if (err) {
             return console.log('Error occurred: ' + err);
-          }
-        console.log(data.tracks.items[0])
-   
-        });
-    }
+        }
+        //console.log(response.tracks.items)
+        var api = data.tracks.items;
+        console.log(api[0])
+     
+        for (var i = 0; i < api.length; i++) {
+            var artists = []
+            for(var j = 0; j < api[i].artists.length; j++){
+                artists.push(api[i].artists[j].name)
+            }
     
-    function getMeMovie(){
-        var urlmovie ="http://www.omdbapi.com/?t=" + keyQuery + "&y=&plot=full&tomatoes=true&apikey=trilogy";
-        axios.get(urlmovie).then(function(response){
-            console.log(response.data)
-            var api = response.data;
-        
+            console.log("----------------" + i + "-------------------");
+            console.log("artist(s): " + artists.join(", "));
+            console.log("song name: " + api[i].name);
+            console.log("preview song: " + api[i].preview_url);
+            console.log("album: " + api[i].album.name);
+            console.log("-------------------------------------------");
+          }
+        // console.log(data.tracks.items[0])
+        // Artist(s)
+        // The song's name
+        // A preview link of the song from Spotify
+        // The album that the song is from
+    });
+}
 
-                var title = api.Title
-                var year = api.Year
-                var imdbRating = api.imdbRating
-                var rotrating = api.Ratings[1].Value
-                var country = api.Country
-                var language = api.Language
-                var plot = api.Plot
-                var actors = api.Actors
-                console.log(title, year, imdbRating, rotrating, country, language, plot, actors)
+function getMeMovie () {
+    var urlmovie = "http://www.omdbapi.com/?t=" + keyQuery + "&y=&plot=full&tomatoes=true&apikey=trilogy";
+    axios.get(urlmovie).then(function (response) {
+        console.log(response.data)
+        var api = response.data;
 
 
-            
-//             Title of the movie.
-//   * Year the movie came out.
-//   * IMDB Rating of the movie.
-//   * Rotten Tomatoes Rating of the movie.
-//   * Country where the movie was produced.
-//   * Language of the movie.
-//   * Plot of the movie.
-//   * Actors in the movie.
-// // 
-        })
+        var title = api.Title
+        var year = api.Year
+        var imdbRating = api.imdbRating
+        var rotrating = api.Ratings[ 1 ].Value
+        var country = api.Country
+        var language = api.Language
+        var plot = api.Plot
+        var actors = api.Actors
+        console.log(title, year, imdbRating, rotrating, country, language, plot, actors)
 
-    }
+        //   * Title of the movie.
+        //   * Year the movie came out.
+        //   * IMDB Rating of the movie.
+        //   * Rotten Tomatoes Rating of the movie.
+        //   * Country where the movie was produced.
+        //   * Language of the movie.
+        //   * Plot of the movie.
+        //   * Actors in the movie.
+    })
 
-    function doWhatItSays(){}
+}
+
+function doWhatItSays () { }
