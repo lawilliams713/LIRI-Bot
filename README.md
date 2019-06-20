@@ -24,20 +24,20 @@
 
 **Technologies Used**
 
-1. Javascript
+- Javascript
 
-2. Nodejs
+- Nodejs
 
-3. Node packages:
-    Node-Spotify-API
-    Request
-    Moment
-    DotEnv
+- Node packages:
+    - Node-Spotify-API
+    - Request
+    - Moment
+    - DotEnv
 
-4. APIs used:
-    Bands in Town
-    OMDB
+- APIs used:
+    - Bands in Town
+    - OMDB
 
-5. Git
+- Git
 
-6. GitHub
+- GitHub
