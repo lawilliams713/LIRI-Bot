@@ -1,4 +1,6 @@
-How To Use LIRI-Bot
+#LIRI-Bot App
+
+**How To Use LIRI-Bot**
 
 1. Open your terminal.
 
@@ -6,7 +8,7 @@ How To Use LIRI-Bot
 
 3. The output will depend on the command you run.
 
-There are four commands: 
+**There are four commands:** 
 
 1. node liri.js concert-this
 
@@ -19,3 +21,23 @@ There are four commands:
 ![LIRI-Bot](assets/images/concert-this.PNG)
 ![LIRI-Bot](assets/images/spotify-this-song.PNG)
 ![LIRI-Bot](assets/images/movie-this.png)
+
+**Technologies Used**
+
+1. Javascript
+
+2. Nodejs
+
+3. Node packages:
+    Node-Spotify-API
+    Request
+    Moment
+    DotEnv
+
+4. APIs used:
+    Bands in Town
+    OMDB
+
+5. Git
+
+6. GitHub
