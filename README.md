@@ -4,7 +4,7 @@ How To Use LIRI-Bot
 
 2. Navigate to the folder that contains the liri.js file.
 
-3. The utput will depend on the command you run.
+3. The output will depend on the command you run.
 
 There are four commands: 
 
@@ -16,4 +16,6 @@ There are four commands:
 
 4. node liri.js do-what-it-says
 
-![LIRI-Bot](images/concert-this.png)
+![LIRI-Bot](assets/images/concert-this.png)
+![LIRI-Bot](assets/images/spotify-this-song.png)
+![LIRI-Bot](assets/images/movie-this.png)
