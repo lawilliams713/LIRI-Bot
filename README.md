@@ -16,6 +16,6 @@ There are four commands:
 
 4. node liri.js do-what-it-says
 
-![LIRI-Bot](assets/images/concert-this.png)
+![LIRI-Bot](assets/images/concert-this.PNG)
 ![LIRI-Bot](assets/images/spotify-this-song.PNG)
 ![LIRI-Bot](assets/images/movie-this.png)
